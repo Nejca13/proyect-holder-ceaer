@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Guía de Instalación para Windows
 
-## Getting Started
+Este README cubre los pasos necesarios para instalar **Node.js**, **pnpm**, y cómo levantar un proyecto usando `pnpm dev` en Windows.
 
-First, run the development server:
+## Instalación de Node.js con FNM (Fast Node Manager)
+
+### 1. Instalar FNM (Fast Node Manager)
+
+Ejecuta el siguiente comando en PowerShell o CMD para instalar `fnm` con `winget`:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+winget install Schniz.fnm
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Configurar el entorno de FNM
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Configura el entorno de `fnm` para que se ejecute automáticamente al cambiar de directorio:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+fnm env --use-on-cd | Out-String | Invoke-Expression
+```
 
-## Learn More
+### 3. Descargar e instalar Node.js
 
-To learn more about Next.js, take a look at the following resources:
+Usa `fnm` para instalar la versión 22 de Node.js:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+fnm use --install-if-missing 22
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4. Verificar la versión de Node.js
 
-## Deploy on Vercel
+Verifica que la versión correcta de Node.js esté en el entorno:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+node -v
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Debería mostrar `v22.11.0`.
+
+### 5. Verificar la versión de npm
+
+Verifica que la versión correcta de npm esté en el entorno:
+
+```bash
+npm -v
+```
+
+Debería mostrar `10.9.0`.
+
+---
+
+## Instalación de PNPM
+
+### Usando otros gestores de paquetes
+
+Existen dos formas de instalar `pnpm`:
+
+#### Opción 1: Instalar `pnpm` usando npm
+
+Ejecuta el siguiente comando para instalar `pnpm` globalmente:
+
+```bash
+npm install -g pnpm
+```
+
+#### Opción 2: Instalar `@pnpm/exe`
+
+Alternativamente, puedes instalar la versión de `pnpm` que incluye Node.js y no requiere instalación previa de Node.js:
+
+```bash
+npm install -g @pnpm/exe
+```
+
+---
+
+## Levantar el Proyecto
+
+### 1. Levantar el proyecto en modo de desarrollo
+
+Una vez que hayas instalado `pnpm`, navega a la carpeta de tu proyecto y ejecuta:
+
+```bash
+pnpm dev
+```
+
+Esto iniciará el proyecto en modo de desarrollo.
+
+---
+
+¡Listo! Ahora deberías tener **Node.js**, **pnpm** y tu proyecto corriendo correctamente en tu máquina con Windows.
