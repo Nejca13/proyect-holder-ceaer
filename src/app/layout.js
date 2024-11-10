@@ -19,12 +19,11 @@ export const metadata = {
   keywords:
     'programación web, HTML, CSS, JavaScript, desarrollo web, introducción a la programación',
   author: 'Contreras Nicolás',
-  viewport: 'width=device-width, initial-scale=1.0',
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang='en'>
+    <html lang='es' data-theme='dark'>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>

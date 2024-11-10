@@ -7,6 +7,7 @@ export default function Home() {
   const [studentName, setStudentName] = useState('')
   const [files, setFiles] = useState(null)
   const [proyectos, setProyectos] = useState([])
+  const [colorTheme, setColorTheme] = useState('dark')
 
   const handleFileChange = (event) => {
     setFiles(event.target.files)
@@ -74,6 +75,14 @@ export default function Home() {
   }
 
   useEffect(() => {
+    const colorTheme = localStorage.getItem('theme')
+    if (colorTheme) {
+      setColorTheme(colorTheme)
+      const html = document.documentElement
+      html.setAttribute('data-theme', colorTheme)
+    } else {
+      localStorage.setItem('color-theme', 'dark')
+    }
     // listar proyectos cargados
     listarProyectos().then((response) => {
       if (response?.success) {
@@ -86,15 +95,37 @@ export default function Home() {
     const date = new Date()
     return date.getFullYear()
   }
+  function toggleTheme() {
+    const html = document.documentElement
+    if (html.getAttribute('data-theme') === 'light') {
+      html.setAttribute('data-theme', 'dark')
+      console.log('dark')
+      localStorage.setItem('theme', 'dark')
+      setColorTheme(false)
+    } else {
+      html.setAttribute('data-theme', 'light')
+      localStorage.setItem('theme', 'light')
+      setColorTheme(true)
+      console.log('light')
+    }
+  }
 
   return (
     <div className={styles.formContainer}>
+      <button
+        className={styles.btn_theme}
+        onClick={() => {
+          toggleTheme()
+        }}
+      >
+        {colorTheme === false ? 'Tema Claro' : 'Tema Oscuro'}
+      </button>
       <nav>
-        <Image src={'/CEAER-LOGO.png'} alt={'logo'} width={80} height={80} />
+        <Image src={'/CEAER-LOGO.png'} alt={'logo'} width={70} height={70} />
         <p>Introduccion a la programacion Web</p>
       </nav>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <h1>Sube tu proyecto</h1>
+        <h1>Subi tu proyecto</h1>
         <div>
           <label>Nombre del Estudiante:</label>
           <input
@@ -122,7 +153,7 @@ export default function Home() {
                   target='_blank'
                   rel='noopener noreferrer'
                 >
-                  {proyecto.studentName}
+                  {'www.' + proyecto.studentName.toLowerCase() + '.com'}
                 </a>
               </li>
             ))}

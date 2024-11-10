@@ -38,3 +38,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+# proyectos
+/public/proyectos/*
+index.html
+style.css
