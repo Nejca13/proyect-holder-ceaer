@@ -67,6 +67,12 @@
   gap: 20px;
 }
 
+.form div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .btn_theme {
   background-color: transparent;
   position: absolute;
