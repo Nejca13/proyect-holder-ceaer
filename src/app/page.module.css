@@ -68,10 +68,18 @@
 }
 
 .btn_theme {
+  background-color: transparent;
   position: absolute;
   top: 10px;
   right: 10px;
   z-index: 100;
+  border: none;
+  transition: transform 0.3s ease-in-out;
+}
+.btn_theme:hover {
+  cursor: pointer;
+  border: none;
+  transition: transform 0.3s ease-in-out;
 }
 
 .proyectosCargados {

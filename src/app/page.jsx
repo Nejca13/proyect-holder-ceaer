@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react'
 import styles from './page.module.css'
 import Image from 'next/image'
+import Sun from '@/assets/icons/Sun'
+import Moon from '@/assets/icons/Moon'
 
 export default function Home() {
   const [studentName, setStudentName] = useState('')
@@ -118,7 +120,7 @@ export default function Home() {
           toggleTheme()
         }}
       >
-        {colorTheme === false ? 'Tema Claro' : 'Tema Oscuro'}
+        {colorTheme === false ? <Sun /> : <Moon color='var(--color-text)' />}
       </button>
       <nav>
         <Image src={'/CEAER-LOGO.png'} alt={'logo'} width={70} height={70} />
